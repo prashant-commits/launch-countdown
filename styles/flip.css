@@ -1,0 +1,57 @@
+.flip {
+    font-size: 80px;
+    --duration: 0.25s;
+    position: relative;
+    display: inline-grid;
+    grid-template-rows: 1fr 1fr;
+    text-align: center;
+    transform-style: preserve-3d;
+    perspective-origin: center;
+    perspective: 200px;
+}
+
+.flip-item {
+    height: 0.5em;
+    line-height: 1;
+    overflow: clip;
+    background-color: #b3b3b3;
+    display: grid;
+}
+
+.flip-top {
+    grid-area: 1/1/2/-1;
+    transform-origin: bottom;
+    align-content: start;
+    transition: transform 0.2s;
+}
+
+.flip-bottom {
+    grid-area: 2/1/-1/-1;
+    transform-origin: top;
+    align-content: end;
+    transition: transform 0.2s 0.2s;
+}
+
+.animate-top-front {
+    animation: flip-top var(--duration) ease-in;
+}
+
+.animate-bottom-back {
+    animation: flip-bottom var(--duration) ease-out var(--duration);
+}
+
+.flip-bottom-back {
+    transform: rotateX(90deg);
+}
+
+@keyframes flip-top {
+    100% {
+        transform: rotateX(-90deg);
+    }
+}
+
+@keyframes flip-bottom {
+    100% {
+        transform: rotateX(0deg);
+    }
+}
